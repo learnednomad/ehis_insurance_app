@@ -14,6 +14,7 @@ import java.util.Set;
 public class Hospital {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int hospitalID;
     private String hospital_name;
     private String address;

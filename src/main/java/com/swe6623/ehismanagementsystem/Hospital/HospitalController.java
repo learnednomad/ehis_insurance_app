@@ -32,7 +32,7 @@ public class HospitalController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Hospital> createHospital(@RequestBody Hospital hospital) {
         Hospital createdHospital = hospitalService.createHospital(hospital);
         return new ResponseEntity<>(createdHospital, HttpStatus.CREATED);
@@ -50,5 +50,4 @@ public class HospitalController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // You can add more methods to handle services, claims, or any other related actions.
 }

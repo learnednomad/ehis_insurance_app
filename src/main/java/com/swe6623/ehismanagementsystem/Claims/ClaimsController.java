@@ -18,7 +18,7 @@ public class ClaimsController {
         this.claimsService = claimsService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Claims> getAllClaims() {
         return claimsService.getAllClaims();
     }
@@ -30,7 +30,7 @@ public class ClaimsController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/add-claim")
     public ResponseEntity<Claims> createClaim(@RequestBody Claims claim) {
         Claims createdClaim = claimsService.createClaim(claim);
         return new ResponseEntity<>(createdClaim, HttpStatus.CREATED);
