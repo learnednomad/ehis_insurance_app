@@ -65,6 +65,20 @@ public class SecurityConfig {
         return http.build();
     }
 
+//roleBased filter
+
+
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws
+//            Exception {
+//        http.csrf((csrf) -> csrf.disable()).cors(withDefaults())
+//                .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authorizeHttpRequests((authorizeHttpRequests) ->
+//                        authorizeHttpRequests.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole ("ADMIN").requestMatchers(new AntPathRequestMatcher("/user/**")).hasRole("USER")
+//                                .anyRequest().authenticated());
+//        return http.build();
+//    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
