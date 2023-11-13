@@ -1,7 +1,7 @@
 package com.swe6623.ehismanagementsystem.Policies.model;
 
-import com.swe6623.ehismanagementsystem.Client.Client;
-import com.swe6623.ehismanagementsystem.PolicyProvider.PolicyProvider;
+import com.swe6623.ehismanagementsystem.Model.Client;
+import com.swe6623.ehismanagementsystem.Model.PolicyProvider;
 import jakarta.persistence.*;
 import lombok.Data;
 

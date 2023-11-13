@@ -2,8 +2,6 @@ package com.swe6623.ehismanagementsystem.Policies.services;
 
 import com.swe6623.ehismanagementsystem.Policies.model.Policy;
 import com.swe6623.ehismanagementsystem.Policies.repository.PolicyRepository;
-import com.swe6623.ehismanagementsystem.PolicyProvider.PolicyProvider;
-import com.swe6623.ehismanagementsystem.PolicyProvider.PolicyProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
