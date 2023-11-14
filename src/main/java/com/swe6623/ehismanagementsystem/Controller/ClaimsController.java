@@ -1,5 +1,6 @@
 package com.swe6623.ehismanagementsystem.Controller;
 
+import com.swe6623.ehismanagementsystem.DTO.ClaimDto;
 import com.swe6623.ehismanagementsystem.Service.ClaimsService;
 import com.swe6623.ehismanagementsystem.Model.Claim;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class ClaimsController {
     }
 
     @GetMapping("/")
-    public List<Claim> getAllClaims() {
+    public List<ClaimDto> getAllClaims() {
         return claimsService.getAllClaims();
     }
 
     @GetMapping("/{claimId}")
-    public ResponseEntity<Claim> getClaimById(@PathVariable long claimId) {
-        Optional<Claim> claim = claimsService.getClaimById(claimId);
+    public ResponseEntity<ClaimDto> getClaimById(@PathVariable long claimId) {
+        Optional<ClaimDto> claim = claimsService.getClaimById(claimId);
         return claim.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
