@@ -3,6 +3,8 @@ package com.swe6623.ehismanagementsystem.Controller;
 import com.swe6623.ehismanagementsystem.DTO.ClientDto;
 import com.swe6623.ehismanagementsystem.Service.ClientService;
 import com.swe6623.ehismanagementsystem.Model.Client;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -42,8 +44,9 @@ public class ClientController {
     }
 
     @DeleteMapping("/{clientId}")
-    public void deleteClient(@PathVariable Long clientId) {
+    public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
         clientService.deleteClient(clientId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 

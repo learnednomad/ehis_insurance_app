@@ -22,14 +22,12 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientId;
-
     private String first_name;
     private String last_name;
     private LocalDateTime dateOfBirth;
     private String photo_url;
     private String phone_number;
     private String email;
-
     private String address;
 
     @CreationTimestamp

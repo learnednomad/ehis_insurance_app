@@ -44,5 +44,4 @@ public class ClaimsService {
         claimsRepository.deleteById(claimId);
     }
 
-
 }
