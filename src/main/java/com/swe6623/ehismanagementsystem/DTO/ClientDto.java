@@ -11,14 +11,16 @@ import java.time.LocalDateTime;
 public record ClientDto(
         Long clientId,
         String firstName,
-         String lastName,
-         LocalDateTime dateOfBirth,
-         String phone_number,
-         String email,
-         String policyPolicyName,
-         double policyPremium,
-         LocalDateTime policyStartDate,
-         LocalDateTime policyEndDate) {
+        String lastName,
+        LocalDateTime dateOfBirth,
+        String phone_number,
+        String email,
+
+        String policyPolicyName,
+        double policyPremium,
+        LocalDateTime policyStartDate,
+        LocalDateTime policyEndDate,
+        Long policyPolicyId) {
 
 
 

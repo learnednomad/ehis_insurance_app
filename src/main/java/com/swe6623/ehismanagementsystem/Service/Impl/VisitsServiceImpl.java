@@ -50,10 +50,6 @@ public class VisitsServiceImpl implements VisitsService {
         return visitsRepository.findAll().stream().map(visitDtoMapper).collect(Collectors.toList());
     }
 
-//    @Override
-//    public Visit saveVisit(Visit visit) {
-//        return null;
-//    }
 
     @Override
     public Visit saveVisit(Visit visit) {
@@ -61,8 +57,8 @@ public class VisitsServiceImpl implements VisitsService {
         Visit savedVisit = visitsRepository.save(visit);
 
 //         Create and save the claim
-
         createClaimForVisit(savedVisit.getVisitID());
+
 //         Return the saved visit
         return savedVisit;
     }
@@ -81,6 +77,8 @@ public class VisitsServiceImpl implements VisitsService {
         visit.setDate(visitDto.date());
         visit.setClient(client);
         visit.setHospital(hospital);
+
+
         // Set other fields as needed
 
         // Save the visit

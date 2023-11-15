@@ -34,10 +34,17 @@ public class ClaimsController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+//    @PostMapping("/add-claim")
+//    public ResponseEntity<Claim> createClaim(@RequestBody Claim claim) {
+//        Claim createdClaim = claimsService.createClaim(claim);
+//        return new ResponseEntity<>(createdClaim, HttpStatus.CREATED);
+//    }
+
+
     @PostMapping("/add-claim")
-    public ResponseEntity<Claim> createClaim(@RequestBody Claim claim) {
-        Claim createdClaim = claimsService.createClaim(claim);
-        return new ResponseEntity<>(createdClaim, HttpStatus.CREATED);
+    public ResponseEntity<Claim> saveClaim(@RequestBody ClaimDto claimDto) {
+        Claim savedClaim = claimsService.saveClaim(claimDto);
+        return new ResponseEntity<>(savedClaim, HttpStatus.CREATED);
     }
 
     @PutMapping("/{claimId}")

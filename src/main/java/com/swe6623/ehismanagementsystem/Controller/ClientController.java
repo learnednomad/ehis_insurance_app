@@ -38,6 +38,12 @@ public class ClientController {
         return clientService.createClient(client);
     }
 
+
+    @PostMapping("/add-clients")
+    public Client createClient(@RequestBody ClientDto client) {
+        return clientService.createClient(client);
+    }
+
     @PutMapping("/{clientId}")
     public Client updateClient(@PathVariable Long clientId, @RequestBody Client updatedClient) {
         return clientService.updateClient(clientId, updatedClient);

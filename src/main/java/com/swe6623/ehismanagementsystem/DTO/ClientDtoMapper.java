@@ -21,7 +21,8 @@ public class ClientDtoMapper implements Function<Client, ClientDto> {
                 client.getPolicy().getPolicyName(),
                 client.getPolicy().getPremium(),
                 client.getPolicy().getStartDate(),
-                client.getPolicy().getEndDate()
+                client.getPolicy().getEndDate(),
+                client.getPolicy().getPolicyId()
         );
 
     }
