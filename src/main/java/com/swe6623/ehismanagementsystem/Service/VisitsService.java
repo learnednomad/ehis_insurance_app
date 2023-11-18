@@ -12,5 +12,7 @@ public interface VisitsService {
 
     Visit saveVisit(VisitDto visitDto);
 
+    Visit updateVisit(VisitDto visitDto);
+
     void deleteVisit(Long id);
 }

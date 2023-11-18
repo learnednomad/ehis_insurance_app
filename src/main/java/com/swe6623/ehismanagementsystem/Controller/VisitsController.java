@@ -39,9 +39,9 @@ public class VisitsController {
     }
 
     @PutMapping("/{id}")
-    public Visit updateVisit(@PathVariable Long id, @RequestBody Visit visit) {
+    public Visit updateVisit(@PathVariable Long id, @RequestBody VisitDto visit) {
         // Assuming that the visit with the given ID exists, update it
-        return visitsService.saveVisit(visit);
+        return visitsService.updateVisit(visit);
     }
 
     @DeleteMapping("/{id}")

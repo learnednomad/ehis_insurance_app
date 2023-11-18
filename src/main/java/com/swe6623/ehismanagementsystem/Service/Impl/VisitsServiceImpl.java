@@ -56,10 +56,10 @@ public class VisitsServiceImpl implements VisitsService {
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
 
-//         Create and save the claim
+        //Create and save the claim
         createClaimForVisit(savedVisit.getVisitID());
 
-//         Return the saved visit
+        // Return the saved visit
         return savedVisit;
     }
 
@@ -83,7 +83,6 @@ public class VisitsServiceImpl implements VisitsService {
 
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
-
         // Create and save the claim
         createClaimForVisit(savedVisit.getVisitID());
 
@@ -96,7 +95,36 @@ public class VisitsServiceImpl implements VisitsService {
         visitsRepository.deleteById(id);
     }
 
+    @Override
+    public Visit updateVisit(VisitDto visitDto) {
 
+        // Fetch client and hospital entities by ID
+        Client client = clientRepository.findById(visitDto.clientClientId())
+                .orElseThrow(() -> new IllegalArgumentException("Client with id " + visitDto.clientClientId() + " not found"));
+
+        Hospital hospital = hospitalRepository.findById(visitDto.hospitalHospitalID())
+                .orElseThrow(() -> new IllegalArgumentException("Hospital with id " + visitDto.hospitalHospitalID() + " not found"));
+
+        // Convert DTO to entity
+        Visit visit = visitsRepository.findById(visitDto.visitID())
+                                .orElseThrow(() -> new IllegalArgumentException("Visit with id " + visitDto.visitID() + " not found"));
+
+        visit.setDate(visitDto.date());
+        visit.setClient(client);
+        visit.setHospital(hospital);
+
+
+        // Set other fields as needed
+
+        // Save the visit
+        Visit savedVisit = visitsRepository.save(visit);
+
+        // Create and save the claim
+//        createClaimForVisit(savedVisit.getVisitID());
+
+        // Return the saved visit
+        return savedVisit;
+    }
 
     public Claim createClaimForVisit(Long visitId) {
         // Retrieve the visit from the database
