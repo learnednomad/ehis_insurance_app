@@ -6,6 +6,8 @@ import {Client} from "../../types.ts";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {addClient} from "../../api/clientapi.ts";
 import ClientDialogContent from "./ClientDialogContent.tsx";
+import Button from "@mui/joy/Button";
+import {Add} from "@mui/icons-material";
 
 function AddClient() {
     const [open, setOpen] = useState(false);
@@ -73,13 +75,15 @@ function AddClient() {
 return(
     <>
 
-        <button onClick={handleClickOpen}>New Client</button>
+        <Button  variant="plain" startDecorator={<Add />} onClick={handleClickOpen}>
+            New Client
+        </Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>New client</DialogTitle>
             <ClientDialogContent client={client} handleChange={handleChange}/>
             <DialogActions>
-                <button onClick={handleClose}>Cancel</button>
-                <button onClick={handleSave}>Save</button>
+                <Button  size={"sm"} variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                <Button size={"sm"} variant="soft" color={"success"} onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>
 

@@ -15,7 +15,6 @@ public record ClientDto(
         LocalDateTime dateOfBirth,
         String phone_number,
         String email,
-
         String policyPolicyName,
         double policyPremium,
         LocalDateTime policyStartDate,

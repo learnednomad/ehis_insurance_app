@@ -1,5 +1,6 @@
 package com.swe6623.ehismanagementsystem.Controller;
 
+import com.swe6623.ehismanagementsystem.DTO.HospitalDto;
 import com.swe6623.ehismanagementsystem.Service.HospitalService;
 import com.swe6623.ehismanagementsystem.Model.Hospital;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class HospitalController {
     }
 
     @GetMapping
-    public List<Hospital> getAllHospitals() {
+    public List<HospitalDto> getAllHospitals() {
         return hospitalService.getAllHospitals();
     }
 

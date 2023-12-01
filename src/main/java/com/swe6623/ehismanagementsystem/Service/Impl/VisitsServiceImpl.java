@@ -1,6 +1,12 @@
 package com.swe6623.ehismanagementsystem.Service.Impl;
 
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.swe6623.ehismanagementsystem.DTO.VisitDto;
 import com.swe6623.ehismanagementsystem.DTO.VisitDtoMapper;
@@ -10,12 +16,6 @@ import com.swe6623.ehismanagementsystem.Repository.ClientRepository;
 import com.swe6623.ehismanagementsystem.Repository.HospitalRepository;
 import com.swe6623.ehismanagementsystem.Repository.VisitsRepository;
 import com.swe6623.ehismanagementsystem.Service.VisitsService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class VisitsServiceImpl implements VisitsService {
@@ -78,9 +78,6 @@ public class VisitsServiceImpl implements VisitsService {
         visit.setClient(client);
         visit.setHospital(hospital);
 
-
-        // Set other fields as needed
-
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
         // Create and save the claim
@@ -107,24 +104,20 @@ public class VisitsServiceImpl implements VisitsService {
 
         // Convert DTO to entity
         Visit visit = visitsRepository.findById(visitDto.visitID())
-                                .orElseThrow(() -> new IllegalArgumentException("Visit with id " + visitDto.visitID() + " not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Visit with id " + visitDto.visitID() + " not found"));
 
         visit.setDate(visitDto.date());
         visit.setClient(client);
         visit.setHospital(hospital);
 
-
-        // Set other fields as needed
-
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
-
-        // Create and save the claim
-//        createClaimForVisit(savedVisit.getVisitID());
 
         // Return the saved visit
         return savedVisit;
     }
+
+
 
     public Claim createClaimForVisit(Long visitId) {
         // Retrieve the visit from the database
@@ -142,9 +135,7 @@ public class VisitsServiceImpl implements VisitsService {
         claim.setClient(visit.getClient());
         // Set default or calculated values for the following fields
         claim.setDiagnosisCodes("Default diagnosis");
-//        claim.setProcedureCodes(String.valueOf(visit.getServices().stream().map(r->r.getServiceName()).findFirst()));
-//        claim.setProcedureCodes(String.valueOf(visit.getServices().stream().map(r -> r.getServiceName()).findFirst().orElse(null)));
-//        claim.setClaimAmount(calculateClaimAmount(visit));
+
         claim.setClaimStatus("SUBMITTED");  // or another appropriate default status
 
         // Save the new claim to the database
@@ -156,9 +147,26 @@ public class VisitsServiceImpl implements VisitsService {
         Set<HealthService> services = visit.getServices();
         double amount = 0;
         for (HealthService a:
-             services) {
+                services) {
             amount += a.getCost();
         }
         return amount;
     }
+
+
+    @Override
+    public List<VisitDto> findAllVisitsByClient(Long id) {
+        return visitsRepository
+                .findAllByClient_ClientId(id)
+                .stream().map(visitDtoMapper)
+                .collect(Collectors.toList());
+    }
+
+//    @Override
+//    public List<VisitDto> findAllVisitsByClient(String username) {
+//       Client client = clientRepository.findClientByAppUserUsername(username);
+//        return findAllVisitsByClient(client.getClientId());
+//    }
+
+
 }

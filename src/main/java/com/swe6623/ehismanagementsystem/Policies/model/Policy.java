@@ -3,14 +3,20 @@ package com.swe6623.ehismanagementsystem.Policies.model;
 import com.swe6623.ehismanagementsystem.Model.Client;
 import com.swe6623.ehismanagementsystem.Model.PolicyProvider;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
+@Builder
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Policy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

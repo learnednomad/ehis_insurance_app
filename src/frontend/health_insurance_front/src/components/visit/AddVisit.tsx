@@ -6,6 +6,8 @@ import {Visit} from "../../types.ts";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {addVisit} from "../../api/visitapi.ts";
 import VisitDialogContent from "./VisitDialogContent.tsx";
+import {Add} from "@mui/icons-material";
+import Button from "@mui/joy/Button";
 
 function AddVisit() {
     const [open, setOpen] = useState(false);
@@ -65,13 +67,16 @@ function AddVisit() {
 return(
     <>
 
-        <button onClick={handleClickOpen}>New Visit</button>
+        <Button  variant="plain" startDecorator={<Add />} onClick={handleClickOpen}>
+            New Visit
+        </Button>
+
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>New visit</DialogTitle>
             <VisitDialogContent visit={visit} handleChange={handleChange}/>
             <DialogActions>
-                <button onClick={handleClose}>Cancel</button>
-                <button onClick={handleSave}>Save</button>
+                <Button  size={"sm"} variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                <Button size={"sm"} variant="soft" color={"success"} onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>
 

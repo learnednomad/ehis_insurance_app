@@ -6,6 +6,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {Claim, ClaimEntry, ClaimsResponse} from "../../types.ts";
 import ClaimDialogContent from "./ClaimDialogContent.tsx";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
+import IconButton from "@mui/joy/IconButton";
+import {Edit} from "@mui/icons-material";
+import {Tooltip} from "@mui/joy";
+import Button from "@mui/joy/Button";
 
 
 type FormProps = {
@@ -85,15 +89,17 @@ function EditClaim({ claimdata }: FormProps) {
     return(
         <>
 
-            <button onClick={handleClickOpen}>
-                Edit
-            </button>
+            <Tooltip title="Edit">
+                <IconButton  size={"sm"} color={"primary"} onClick={handleClickOpen}>
+                    <Edit fontSize={"small"}/>
+                </IconButton>
+            </Tooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit Claim</DialogTitle>
                 <ClaimDialogContent claim={claim} handleChange={handleChange}/>
                 <DialogActions>
-                    <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleSave}>Save</button>
+                    <Button  variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                    <Button  variant="soft" color={"success"} onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
 

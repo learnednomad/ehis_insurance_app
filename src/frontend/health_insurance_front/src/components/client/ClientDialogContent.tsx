@@ -1,7 +1,10 @@
 import { Client } from '../../types';
 import DialogContent from "@mui/material/DialogContent";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/joy/Stack";
 type DialogFormProps = {
     client: Client;
+
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) =>
         void;
 }
@@ -9,24 +12,27 @@ function ClientDialogContent({ client, handleChange }: DialogFormProps) {
     return (
 
         <DialogContent>
-            <input placeholder="First Name" name="firstName"
+
+            <Stack my={2}>
+
+            <TextField label="First Name" name="firstName"
                    value={client.firstName} onChange={handleChange}/><br/>
 
-            <input placeholder="Last Name" name="lastName"
+            <TextField label="Last Name" name="lastName"
                    value={client.lastName} onChange={handleChange}/><br/>
 
-            <input placeholder="Date Of Birth" name="dateOfBirth" type="datetime-local"
+            <TextField label="Date Of Birth" name="dateOfBirth" type="datetime-local"
                    value={client.dateOfBirth} onChange={handleChange}/><br/>
 
-            <input placeholder="Phone Number" name="phone_number"
+            <TextField label="Phone Number" name="phone_number"
                    value={client.phone_number} onChange={handleChange}/><br/>
 
-            <input placeholder="Email" name="email"
+            <TextField label="Email" name="email"
                    value={client.email} onChange={handleChange}/><br/>
 
-            <input placeholder="Policy" name="policyPolicyId"
+            <TextField label="Policy" name="policyPolicyId"
                    value={client.policyPolicyId} onChange={handleChange}/><br/>
-
+            </Stack>
 
         </DialogContent>
 

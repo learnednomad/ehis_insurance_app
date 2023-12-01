@@ -6,6 +6,9 @@ import {DataGrid, GridCellParams, GridColDef, GridToolbar} from '@mui/x-data-gri
 import Snackbar from '@mui/material/Snackbar';
 import AddProvider from "./AddProvider.tsx";
 import EditProvider from "./EditProvider.tsx";
+import IconButton from "@mui/joy/IconButton";
+import {GridDeleteIcon} from "@mui/x-data-grid/joy/icons";
+import Box from "@mui/joy/Box";
 
 
 function ProviderList() {
@@ -32,11 +35,11 @@ function ProviderList() {
     });
 
     const columns: GridColDef[] = [
-        {field: 'provider_id', headerName: 'ID', width: 200},
+        {field: 'provider_id', headerName: 'ID', width: 150},
         {field: 'provider_name', headerName: 'Provider Name', width: 150},
         {field: 'phone_number', headerName: 'Phone Number', width: 200},
         {field: 'contact_person', headerName: 'Contact', width: 200},
-        {field: 'provider_address', headerName: 'Address', width: 150},
+        {field: 'provider_address', headerName: 'Address', width: 300},
         {
             field: 'edit',
             headerName: '',
@@ -55,13 +58,13 @@ function ProviderList() {
             filterable: false,
             disableColumnMenu: true,
             renderCell: (params: GridCellParams) => (
-                <button
+                <IconButton
                     onClick={() => { if (window.confirm(`Are you sure you want to delete ${params.row.provider_id} ?`)) {
                         mutate(params.row.provider_id);}
                     }}
                 >
-                    Delete
-                </button>
+                    <GridDeleteIcon color={"danger"}/>
+                </IconButton>
             ),
         },
     ];
@@ -74,7 +77,7 @@ function ProviderList() {
     }
     else {
         return (
-            <>
+            <Box sx={{ height: 600, width: '100%' }}>
                 <AddProvider/>
                 <DataGrid
                     rows={data}
@@ -91,7 +94,7 @@ function ProviderList() {
                     onClose={() => setOpen(false)}
                     message="Provider deleted" />
 
-            </>
+            </Box>
         );
     }
 

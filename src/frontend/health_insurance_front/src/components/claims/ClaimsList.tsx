@@ -5,6 +5,10 @@ import {DataGrid, GridCellParams, GridColDef, GridToolbar} from '@mui/x-data-gri
 import Snackbar from '@mui/material/Snackbar';
 import AddClaim from "./AddClaim.tsx";
 import EditClaim from "./EditClaim.tsx";
+import Box from "@mui/joy/Box";
+import IconButton from "@mui/joy/IconButton";
+import {GridDeleteIcon} from "@mui/x-data-grid/joy/icons";
+
 
 
 function ClaimsList() {
@@ -57,13 +61,13 @@ function ClaimsList() {
             disableColumnMenu: true,
 
             renderCell: (params: GridCellParams) => (
-                <button
+                <IconButton size={"sm"} aria-label={"delete"}
                     onClick={() =>  { if (window.confirm(`Are you sure you want to delete claim : ${params.row.claimId} for ${params.row.clientFirst_name} ${params.row.clientLast_name}?`)) {
                         mutate(params.row.claimId);}
                     }}
                 >
-                    Delete
-                </button>
+                    <GridDeleteIcon color={"danger"}/>
+                </IconButton>
             ),
         },
     ];
@@ -76,15 +80,15 @@ function ClaimsList() {
     }
     else {
         return (
-            <>
+
+            <Box sx={{ height: 600, width: '100%' }}>
                 <AddClaim/>
-            <DataGrid
+            <DataGrid autoPageSize={true}
             rows={data}
             columns={columns}
             disableRowSelectionOnClick={true}
             getRowId={row => row.claimId}
             slots={{ toolbar: GridToolbar }}
-
             />
                 <Snackbar
                     open={open}
@@ -92,7 +96,7 @@ function ClaimsList() {
                     onClose={() => setOpen(false)}
                     message="Claim deleted" />
 
-            </>
+            </Box>
         );
     }
 

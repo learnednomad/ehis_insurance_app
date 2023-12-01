@@ -6,6 +6,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {Visit, VisitResponse, VisitEntry} from "../../types.ts";
 import VisitDialogContent from "./VisitDialogContent.tsx";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
+import Button from "@mui/joy/Button";
+import {Edit} from "@mui/icons-material";
+import IconButton from "@mui/joy/IconButton";
+import {Tooltip} from "@mui/joy";
 
 
 
@@ -85,16 +89,19 @@ function EditVisit({ visitdata }: FormProps) {
     return(
         <>
 
+            <Tooltip title="Edit">
+                <IconButton  size={"sm"} color={"primary"} onClick={handleClickOpen}>
+                    <Edit fontSize={"small"}/>
+                </IconButton>
+            </Tooltip>
 
-            <button onClick={handleClickOpen}>
-                Edit
-            </button>
+
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Edit Visit</DialogTitle>
+                <DialogTitle >Edit Visit</DialogTitle>
                 <VisitDialogContent visit={visit} handleChange={handleChange}/>
                 <DialogActions>
-                    <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleSave}>Save</button>
+                    <Button  variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                    <Button  variant="soft" color={"success"} onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
 

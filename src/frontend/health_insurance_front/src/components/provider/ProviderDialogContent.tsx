@@ -1,5 +1,7 @@
 import {Provider} from "../../types.ts";
 import DialogContent from "@mui/material/DialogContent";
+import Stack from "@mui/joy/Stack";
+import TextField from "@mui/material/TextField";
 
 
 type DialogFormProps = {
@@ -10,16 +12,16 @@ type DialogFormProps = {
 function ProviderDialogContent({ provider, handleChange }: DialogFormProps) {
     return (
         <DialogContent>
-            <input placeholder="Provider Name" name="provider_name"
+            <Stack my={2}>
+            <TextField label="Provider Name" name="provider_name"
                    value={provider.provider_name} onChange={handleChange}/><br/>
-            <input placeholder="Address" name="provider_address"
+            <TextField label="Address" name="provider_address"
                    value={provider.provider_address} onChange={handleChange}/><br/>
-            <input placeholder="Contact Person" name="contact_person"
+            <TextField label="Contact Person" name="contact_person"
                    value={provider.contact_person} onChange={handleChange}/><br/>
-
-            <input placeholder="Phone Number" name="phone_number"
+            <TextField label="Phone Number" name="phone_number"
                    value={provider.phone_number} onChange={handleChange}/><br/>
-
+            </Stack>
         </DialogContent>
     );
 }

@@ -6,6 +6,9 @@ import {DataGrid, GridCellParams, GridColDef, GridToolbar} from '@mui/x-data-gri
 import Snackbar from '@mui/material/Snackbar';
 import AddClient from "./AddClient.tsx";
 import EditClient from "./EditClient.tsx";
+import Box from "@mui/joy/Box";
+import {GridDeleteIcon} from "@mui/x-data-grid/joy/icons";
+import IconButton from "@mui/joy/IconButton";
 
 
 
@@ -58,14 +61,14 @@ function ClientList() {
             filterable: false,
             disableColumnMenu: true,
             renderCell: (params: GridCellParams) => (
-                <button
+                <IconButton size={"sm"} aria-label={"delete"}
                     onClick={() => { if (window.confirm(`Are you sure you want to delete patient  ${params.row.firstName} ${params.row.lastName} with ID:${params.row.
                         clientId}?`)) {
                         mutate(params.row.clientId);}
                     }}
                 >
-                    Delete
-                </button>
+                    <GridDeleteIcon color={"danger"}/>
+                </IconButton>
             ),
         },
 
@@ -80,7 +83,7 @@ function ClientList() {
     }
     else {
         return (
-            <>
+            <Box sx={{ height: 600, width: '100%' }}>
                 <AddClient/>
                 <DataGrid columns={columns}
                           rows={data}
@@ -95,7 +98,7 @@ function ClientList() {
                     onClose={() => setOpen(false)}
                     message="Client deleted" />
 
-            </>
+            </Box>
         );
     }
 

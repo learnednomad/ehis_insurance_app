@@ -14,5 +14,9 @@ public interface VisitsService {
 
     Visit updateVisit(VisitDto visitDto);
 
+    List<VisitDto> findAllVisitsByClient(Long id);
+
+//    List<VisitDto> findAllVisitsByClient(String username);
+
     void deleteVisit(Long id);
 }

@@ -33,6 +33,13 @@ public class VisitsController {
         return visitsService.findAllVisits();
     }
 
+
+    @GetMapping("clients/{id}")
+    public List<VisitDto> getClientVisits(@PathVariable Long id) {
+
+        return visitsService.findAllVisitsByClient(id);
+    }
+
     @PostMapping("/add-visit")
     public Visit createVisit(@RequestBody VisitDto visit) {
         return visitsService.saveVisit(visit);

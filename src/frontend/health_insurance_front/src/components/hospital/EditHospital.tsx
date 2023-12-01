@@ -6,6 +6,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {Hospital, HospitalEntry, HospitalResponse} from "../../types.ts";
 import HospitalDialogContent from "./HospitalDialogContent.tsx";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
+import IconButton from "@mui/joy/IconButton";
+import {Edit} from "@mui/icons-material";
+import {Tooltip} from "@mui/joy";
+import Button from "@mui/joy/Button";
 
 
 type FormProps = {
@@ -83,15 +87,17 @@ function EditHospital({ hospitaldata }: FormProps) {
     return(
         <>
 
-            <button onClick={handleClickOpen}>
-                Edit
-            </button>
+            <Tooltip title="Edit">
+                <IconButton  size={"sm"} color={"primary"} onClick={handleClickOpen}>
+                    <Edit fontSize={"small"}/>
+                </IconButton>
+            </Tooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit Hospital</DialogTitle>
                 <HospitalDialogContent hospital={hospital} handleChange={handleChange}/>
                 <DialogActions>
-                    <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleSave}>Save</button>
+                    <Button  variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                    <Button  variant="soft" color={"success"} onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
 

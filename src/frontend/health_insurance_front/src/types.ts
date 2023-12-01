@@ -40,6 +40,7 @@ export type Provider = {
 
 
 export type Hospital = {
+    email: string;
     hospitalID: number;
     hospital_name: string;
     address: string;
@@ -108,6 +109,7 @@ export type HospitalResponse = {
     hospital_name: string;
     address: string;
     phone_number: string;
+    email:string;
     visits: never[];
     claims: never[];
     offeredServices: never[];

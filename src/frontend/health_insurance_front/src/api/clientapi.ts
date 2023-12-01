@@ -1,8 +1,18 @@
 import {Client, ClientResponse, ClientEntry} from "../types.ts";
-import axios from 'axios';
+import axios, {AxiosRequestConfig} from 'axios';
 
+
+const getAxiosConfig = (): AxiosRequestConfig => {
+    const token = sessionStorage.getItem("jwt");
+    return {
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'application/json',
+        },
+    };
+};
 export const getClients = async (): Promise<ClientResponse[]> => {
-    const response = await axios.get("http://localhost:2600/api/v1/clients");
+    const response = await axios.get("http://localhost:2600/api/v1/clients",getAxiosConfig());
     return response.data;
 }
 
@@ -13,11 +23,7 @@ export const getClients = async (): Promise<ClientResponse[]> => {
 
 
 export const addClient = async (client: Client): Promise<ClientResponse> => {
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}clients/add-clients`, client, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}clients/add-clients`, client, getAxiosConfig());
     return response.data;
 }
 

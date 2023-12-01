@@ -1,6 +1,7 @@
 package com.swe6623.ehismanagementsystem.Model;
 
 
+import com.swe6623.ehismanagementsystem.UserAccount.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class Hospital {
     private String hospital_name;
     private String address;
     private String phone_number;
+    private String email;
 
     // Visits are directly associated with the Hospital
     @OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -33,4 +35,8 @@ public class Hospital {
             joinColumns = @JoinColumn(name = "hospital_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     private Set<HealthService> offeredServices;
+
+    @OneToOne(mappedBy = "hospital", cascade = CascadeType.ALL, orphanRemoval = true)
+    private AppUser appUser;
+
 }

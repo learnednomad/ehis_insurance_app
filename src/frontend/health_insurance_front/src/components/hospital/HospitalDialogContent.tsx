@@ -1,5 +1,7 @@
 import { Hospital } from '../../types';
 import DialogContent from "@mui/material/DialogContent";
+import TextField from "@mui/material/TextField";
+import Stack from "@mui/joy/Stack";
 
 type DialogFormProps = {
     hospital: Hospital;
@@ -9,12 +11,16 @@ type DialogFormProps = {
 function HospitalDialogContent({ hospital, handleChange }: DialogFormProps) {
     return (
         <DialogContent>
-            <input placeholder="Hospital Name" name="hospital_name"
+            <Stack my={2}>
+            <TextField label="Hospital Name" name="hospital_name"
                    value={hospital.hospital_name} onChange={handleChange}/><br/>
-            <input placeholder="Phone Number" name="phone_number"
+            <TextField label="Phone Number" name="phone_number"
                    value={hospital.phone_number} onChange={handleChange}/><br/>
-            <input placeholder="Address" name="address"
+            <TextField label="Address" name="address"
                    value={hospital.address} onChange={handleChange}/><br/>
+                <TextField label="Email" name="email"
+                           value={hospital.email} onChange={handleChange}/><br/>
+            </Stack>
         </DialogContent>
     );
 }

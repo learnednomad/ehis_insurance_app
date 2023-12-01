@@ -6,10 +6,13 @@ import {Hospital} from "../../types.ts";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {addHospital} from "../../api/hospitalapi.ts";
 import HospitalDialogContent from "./HospitalDialogContent.tsx";
+import Button from "@mui/joy/Button";
+import {Add} from "@mui/icons-material";
 
 function AddHospital() {
     const [open, setOpen] = useState(false);
     const [hospital, setHospital] = useState<Hospital>({
+        email: "",
         address: "",
         claims: [],
         hospitalID: 0,
@@ -50,6 +53,7 @@ function AddHospital() {
     const handleSave = () => {
         mutate(hospital);
         setHospital({
+            email: "",
             address: "",
             claims: [],
             hospitalID: 0,
@@ -63,14 +67,15 @@ function AddHospital() {
 
 return(
     <>
-
-        <button onClick={handleClickOpen}>New Location</button>
+        <Button  variant="plain" startDecorator={<Add />} onClick={handleClickOpen}>
+            New Location
+        </Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>New location</DialogTitle>
             <HospitalDialogContent hospital={hospital} handleChange={handleChange}/>
             <DialogActions>
-                <button onClick={handleClose}>Cancel</button>
-                <button onClick={handleSave}>Save</button>
+                <Button  size={"sm"} variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
+                <Button size={"sm"} variant="soft" color={"success"} onClick={handleSave}>Save</Button>
             </DialogActions>
         </Dialog>
 

@@ -6,6 +6,9 @@ import {DataGrid, GridCellParams, GridColDef, GridToolbar} from '@mui/x-data-gri
 import Snackbar from '@mui/material/Snackbar';
 import AddHospital from "./AddHospital.tsx";
 import EditHospital from "./EditHospital.tsx";
+import Box from "@mui/joy/Box";
+import {GridDeleteIcon} from "@mui/x-data-grid/joy/icons";
+import IconButton from "@mui/joy/IconButton";
 
 
 function HospitalList() {
@@ -35,8 +38,8 @@ function HospitalList() {
         {field: 'hospitalID', headerName: 'Hospital ID', width: 200},
         {field: 'hospital_name', headerName: 'Name', width: 200},
         {field: 'phone_number', headerName: 'Phone', width: 200},
-        {field: 'address', headerName: 'Address', width: 200},
-        {field: 'offeredServices.length', headerName: 'No. Services Offered', width: 100},
+        {field: 'address', headerName: 'Address', width: 300},
+        {field: 'offeredServices.length', headerName: 'No. Services Offered', width: 200},
 
         {
             field: 'edit',
@@ -56,14 +59,14 @@ function HospitalList() {
             filterable: false,
             disableColumnMenu: true,
             renderCell: (params: GridCellParams) => (
-                <button
+                <IconButton size={"sm"} aria-label={"delete"}
                     onClick={() => { if (window.confirm(`Are you sure you want to delete ${params.row.
                         hospital_name} ?`)) {
                         mutate(params.row.hospitalID);}
                     }}
                 >
-                    Delete
-                </button>
+                    <GridDeleteIcon color={"danger"}/>
+                </IconButton>
             ),
         },
     ];
@@ -76,7 +79,7 @@ function HospitalList() {
     }
     else {
         return (
-            <>
+            <Box sx={{ height: 600, width: '100%' }}>
                 <AddHospital/>
             <DataGrid
                 rows={data}
@@ -93,7 +96,7 @@ function HospitalList() {
                     onClose={() => setOpen(false)}
                     message="Hospital deleted" />
 
-            </>
+            </Box>
         );
     }
 

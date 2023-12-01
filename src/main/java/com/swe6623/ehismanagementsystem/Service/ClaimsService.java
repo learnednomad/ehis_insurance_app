@@ -1,21 +1,21 @@
 package com.swe6623.ehismanagementsystem.Service;
 
 
-import com.swe6623.ehismanagementsystem.DTO.ClaimDto;
-import com.swe6623.ehismanagementsystem.DTO.ClaimDtoMapper;
-import com.swe6623.ehismanagementsystem.Model.Client;
-import com.swe6623.ehismanagementsystem.Model.Hospital;
-import com.swe6623.ehismanagementsystem.Model.Visit;
-import com.swe6623.ehismanagementsystem.Repository.ClaimsRepository;
-import com.swe6623.ehismanagementsystem.Model.Claim;
-import com.swe6623.ehismanagementsystem.Repository.ClientRepository;
-import com.swe6623.ehismanagementsystem.Repository.HospitalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.swe6623.ehismanagementsystem.DTO.ClaimDto;
+import com.swe6623.ehismanagementsystem.DTO.ClaimDtoMapper;
+import com.swe6623.ehismanagementsystem.Model.Claim;
+import com.swe6623.ehismanagementsystem.Model.Client;
+import com.swe6623.ehismanagementsystem.Model.Hospital;
+import com.swe6623.ehismanagementsystem.Repository.ClaimsRepository;
+import com.swe6623.ehismanagementsystem.Repository.ClientRepository;
+import com.swe6623.ehismanagementsystem.Repository.HospitalRepository;
 
 @Service
 public class ClaimsService {
@@ -41,6 +41,14 @@ public class ClaimsService {
         return claimsRepository.findById(claimId).map(claimDtoMapper);
     }
 
+    public List<ClaimDto> getClientClaims(Long clientId) {
+        return claimsRepository.findAllByClient_ClientId(clientId).stream().map(claimDtoMapper).collect(Collectors.toList());
+    }
+
+    public List<ClaimDto> getHospitalClaims(Long hospitalID) {
+        return claimsRepository.findAllByHospital_HospitalID(hospitalID).stream().map(claimDtoMapper).collect(Collectors.toList());
+    }
+
     public Claim createClaim(Claim claim) {
         return claimsRepository.save(claim);
     }
@@ -59,7 +67,6 @@ public class ClaimsService {
 
         Hospital hospital = hospitalRepository.findById(claimDto.hospitalHospitalID())
                 .orElseThrow(() -> new IllegalArgumentException("Hospital with id " + claimDto.hospitalHospitalID() + " not found"));
-
 
         // Convert DTO to entity
         Claim claim = new Claim();
