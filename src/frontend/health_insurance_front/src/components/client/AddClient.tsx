@@ -29,9 +29,11 @@ function AddClient() {
 
     const queryClient = useQueryClient();
 
-    const { mutate } = useMutation(addClient, {
+    const { mutate } = useMutation(addClient,{
         onSuccess: () => {
-            queryClient.invalidateQueries(["clients"]);
+            queryClient.invalidateQueries(['clients']);
+
+            queryClient.clear()
         },
         onError: (err) => {
             console.error(err);

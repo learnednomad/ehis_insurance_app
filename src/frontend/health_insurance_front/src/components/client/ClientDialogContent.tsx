@@ -2,12 +2,14 @@ import { Client } from '../../types';
 import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/joy/Stack";
+
 type DialogFormProps = {
     client: Client;
 
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) =>
         void;
 }
+
 function ClientDialogContent({ client, handleChange }: DialogFormProps) {
     return (
 

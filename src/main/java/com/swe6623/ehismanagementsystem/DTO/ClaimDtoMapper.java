@@ -21,7 +21,8 @@ public class ClaimDtoMapper implements Function<Claim,ClaimDto> {
                 claim.getClaimAmount(),
                 claim.getClaimStatus(),
                 claim.getHospital().getHospitalID(),
-                claim.getHospital().getHospital_name()
+                claim.getHospital().getHospital_name(),
+                claim.getDiagnosisCodes()
         );
 
     }

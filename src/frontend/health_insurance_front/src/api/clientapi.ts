@@ -16,10 +16,6 @@ export const getClients = async (): Promise<ClientResponse[]> => {
     return response.data;
 }
 
-// export const deleteClient = async (link: string): Promise<ClientResponse> => {
-//     const response = await axios.delete(link);
-//     return response.data
-// }
 
 
 export const addClient = async (client: Client): Promise<ClientResponse> => {
@@ -27,10 +23,10 @@ export const addClient = async (client: Client): Promise<ClientResponse> => {
     return response.data;
 }
 
-export const deleteClient = async (clientId): Promise<ClientResponse> => {
+export const deleteClient = async (clientId:number): Promise<ClientResponse> => {
     try {
         console.log("Deleting client with ID:", clientId);
-        const response = await axios.delete(import.meta.env.VITE_API_URL + `clients/${clientId}`);
+        const response = await axios.delete(import.meta.env.VITE_API_URL + `clients/${clientId}`,getAxiosConfig());
         console.log("Delete response:", response.data);
         return response.data;
     } catch (error) {
@@ -42,10 +38,6 @@ export const deleteClient = async (clientId): Promise<ClientResponse> => {
 
 export const updateClient = async (clientEntry: ClientEntry):
     Promise<ClientResponse> => {
-    const response = await axios.put(clientEntry.url, clientEntry.client, {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    });
+    const response = await axios.put(clientEntry.url, clientEntry.client, getAxiosConfig());
     return response.data;
 }

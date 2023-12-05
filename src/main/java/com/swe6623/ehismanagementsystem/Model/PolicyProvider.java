@@ -24,7 +24,6 @@ public class PolicyProvider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long provider_id;
-
     private String provider_name;
     private String provider_address;
     private String contact_person;

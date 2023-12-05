@@ -1,4 +1,3 @@
-// CarDialogContent.tsx
 import {Visit} from "../../types.ts";
 import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
@@ -22,8 +21,15 @@ function VisitDialogContent({ visit, handleChange }: DialogFormProps) {
             <TextField size={"small"} label="Client ID" name="clientClientId"
                    value={visit.clientClientId} onChange={handleChange}/><br/>
 
-            <TextField size={"small"} label="Hospital ID" name="hospitalHospitalID"
-                   value={visit.hospitalHospitalID}  onChange={handleChange}/><br/>
+            {/*<TextField size={"small"} label="Hospital ID" name="hospitalHospitalID"*/}
+            {/*       value={visit.hospitalHospitalID}  onChange={handleChange}/><br/>*/}
+
+                <TextField size={"small"} label="Services Provided" name="serviceProvided"
+                           value={visit.serviceProvided} onChange={handleChange}/><br/>
+
+                <TextField size={"small"} label="Service Fee" name="serviceCost"
+                           value={visit.serviceCost} onChange={handleChange}/><br/>
+
 
             <TextField size={"small"} label="Date of Service" name="date" type="datetime-local"
                    value={visit.date} onChange={handleChange}/><br/>

@@ -37,7 +37,7 @@ public class WebSecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
-                        .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**"))
+                        .requestMatchers(new AntPathRequestMatcher("/**"))
                                 .permitAll().anyRequest().authenticated())
                 .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)

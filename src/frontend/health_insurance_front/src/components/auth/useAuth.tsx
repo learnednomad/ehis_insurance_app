@@ -20,7 +20,7 @@ const useAuth = () => {
         }
     }, []);
 
-    const authenticateUser = (token, role) => {
+    const authenticateUser = (token:string, role:string) => {
         localStorage.setItem('jwt', token);
         localStorage.setItem('userRole', role);
         setJwtToken(token);

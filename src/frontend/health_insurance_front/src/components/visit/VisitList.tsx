@@ -18,7 +18,8 @@ function VisitList() {
 
     const { data, error, isSuccess } = useQuery({
         queryKey: ["visits"],
-        queryFn: getVisits
+        queryFn: getVisits,
+        refetchInterval:10
     });
 
 
@@ -39,6 +40,8 @@ function VisitList() {
         {field: 'clientLast_name', headerName: 'Last Name', width: 200},
         {field: 'date', headerName: 'Date of Service', width: 250},
         {field: 'hospitalHospital_name', headerName: 'Location', width: 200},
+        {field: 'serviceProvided', headerName: 'Service Provided', width: 200},
+        {field: 'serviceCost', headerName: 'Service Cost', width: 200},
         {
             field: 'edit',
             headerName: '',

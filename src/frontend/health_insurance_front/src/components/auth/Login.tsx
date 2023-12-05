@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
-import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
 
@@ -14,7 +13,6 @@ type User = {
 };
 
 function Login() {
-    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [user, setUser] = useState<User>({
         username: '',
@@ -22,7 +20,7 @@ function Login() {
     });
 
 
-    const { isAuthenticated, authenticateUser, userRole } = useAuth(); // Get the authenticateUser function from useAuth
+    const {  authenticateUser } = useAuth(); // Get the authenticateUser function from useAuth
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({
@@ -64,6 +62,7 @@ function Login() {
 
                         // setTimeout(() => navigate('/cvisits'), 100); // Wrap navigate inside a setTimeout
                     } else {
+
                         window.location.replace(
                             "/hdash",
                         );

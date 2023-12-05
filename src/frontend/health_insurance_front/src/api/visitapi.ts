@@ -12,6 +12,7 @@ const getAxiosConfig = (): AxiosRequestConfig => {
     };
 };
 
+// @ts-ignore
 const uid = JSON.parse(localStorage.getItem('user_id'));
 
 export const getVisits = async (): Promise<VisitResponse[]> => {
@@ -25,13 +26,21 @@ export const getClientVisits = async (): Promise<VisitResponse[]> => {
     return response.data;
 }
 
+
+export const getHospitalVisits = async (): Promise<VisitResponse[]> => {
+    const response = await axios.get(`http://localhost:2600/api/v1/visits/hosp/${uid}`, getAxiosConfig());
+    return response.data;
+}
+
+
+
 export const addVisit = async (visit: Visit): Promise<VisitResponse> => {
     const response = await axios.post(`${import.meta.env.VITE_API_URL}visits/add-visit`, visit,getAxiosConfig());
     return response.data;
 }
 
 
-export const deleteVisit = async (visitID): Promise<VisitResponse> => {
+export const deleteVisit = async (visitID:number): Promise<VisitResponse> => {
     try {
         console.log("Deleting client with ID:", visitID);
         const response = await axios.delete(import.meta.env.VITE_API_URL + `visits/${visitID}`, getAxiosConfig());

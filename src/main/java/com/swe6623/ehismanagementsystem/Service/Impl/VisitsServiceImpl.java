@@ -77,6 +77,8 @@ public class VisitsServiceImpl implements VisitsService {
         visit.setDate(visitDto.date());
         visit.setClient(client);
         visit.setHospital(hospital);
+        visit.setServiceProvided(visitDto.serviceProvided());
+        visit.setServiceCost(visitDto.serviceCost());
 
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
@@ -109,6 +111,8 @@ public class VisitsServiceImpl implements VisitsService {
         visit.setDate(visitDto.date());
         visit.setClient(client);
         visit.setHospital(hospital);
+        visit.setServiceProvided(visitDto.serviceProvided());
+        visit.setServiceCost(visitDto.serviceCost());
 
         // Save the visit
         Visit savedVisit = visitsRepository.save(visit);
@@ -134,8 +138,8 @@ public class VisitsServiceImpl implements VisitsService {
         claim.setHospital(visit.getHospital());
         claim.setClient(visit.getClient());
         // Set default or calculated values for the following fields
-        claim.setDiagnosisCodes("Default diagnosis");
-
+        claim.setDiagnosisCodes(visit.getServiceProvided());
+        claim.setClaimAmount(visit.getServiceCost());
         claim.setClaimStatus("SUBMITTED");  // or another appropriate default status
 
         // Save the new claim to the database
@@ -158,6 +162,14 @@ public class VisitsServiceImpl implements VisitsService {
     public List<VisitDto> findAllVisitsByClient(Long id) {
         return visitsRepository
                 .findAllByClient_ClientId(id)
+                .stream().map(visitDtoMapper)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<VisitDto> findAllVisitsByHospital(Long id) {
+        return visitsRepository
+                .findAllByHospital_HospitalID(id)
                 .stream().map(visitDtoMapper)
                 .collect(Collectors.toList());
     }

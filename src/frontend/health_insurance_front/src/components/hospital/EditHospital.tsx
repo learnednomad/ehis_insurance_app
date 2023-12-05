@@ -20,6 +20,7 @@ function EditHospital({ hospitaldata }: FormProps) {
     const [open, setOpen] = useState(false);
 
     const [hospital, setHospital] = useState<Hospital>({
+        email: "",
         address: "",
         claims: [],
         hospitalID: 0,
@@ -45,6 +46,7 @@ function EditHospital({ hospitaldata }: FormProps) {
 
     const handleClickOpen = () => {
         setHospital({
+            email: "",
             address: hospitaldata.address,
             claims: [],
             hospitalID: hospitaldata.hospitalID,
@@ -67,6 +69,7 @@ function EditHospital({ hospitaldata }: FormProps) {
         mutate(hospitalEntry);
 
       setHospital({
+          email: "",
           address: "",
           claims: [],
           hospitalID: 0,

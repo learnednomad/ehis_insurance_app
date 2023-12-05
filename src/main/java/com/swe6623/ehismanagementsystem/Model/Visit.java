@@ -32,5 +32,7 @@ public class Visit {
             inverseJoinColumns = @JoinColumn(name = "serviceID"))
     private Set<HealthService> services;
 
+    private String serviceProvided;
+    private int serviceCost;
     private LocalDateTime date;
 }

@@ -34,6 +34,15 @@ public class ClaimsController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+
+    @GetMapping("hospital/{hospId}")
+    public List<ClaimDto>  getHospitalClaims(@PathVariable long hospId) {
+        List<ClaimDto> claims = claimsService.getHospitalClaims(hospId);
+        return claims;
+    }
+
+
+
 //    @PostMapping("/add-claim")
 //    public ResponseEntity<Claim> createClaim(@RequestBody Claim claim) {
 //        Claim createdClaim = claimsService.createClaim(claim);
@@ -48,7 +57,7 @@ public class ClaimsController {
     }
 
     @PutMapping("/{claimId}")
-    public ResponseEntity<Claim> updateClaim(@PathVariable long claimId, @RequestBody Claim claim) {
+    public ResponseEntity<Claim> updateClaim(@PathVariable long claimId, @RequestBody ClaimDto claim) {
         Claim updatedClaim = claimsService.updateClaim(claimId, claim);
         return new ResponseEntity<>(updatedClaim, HttpStatus.OK);
     }

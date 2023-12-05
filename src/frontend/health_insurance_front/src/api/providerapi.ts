@@ -23,7 +23,7 @@ export const addProvider = async (provider: Provider): Promise<ProviderResponse>
 }
 
 //delete function
-export const deleteProvider = async (provider_id): Promise<ProviderResponse> => {
+export const deleteProvider = async (provider_id:number): Promise<ProviderResponse> => {
     try {
         console.log("Deleting client with ID:", provider_id);
         const response = await axios.delete(import.meta.env.VITE_API_URL + `providers/${provider_id}`,getAxiosConfig());

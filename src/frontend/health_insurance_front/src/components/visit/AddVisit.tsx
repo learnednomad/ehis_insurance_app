@@ -12,6 +12,7 @@ import Button from "@mui/joy/Button";
 function AddVisit() {
     const [open, setOpen] = useState(false);
     const [visit, setVisit] = useState<Visit>({
+        serviceCost: 0, serviceProvided: "",
         clientClientId: 0,
         clientFirst_name: "",
         clientLast_name: "",
@@ -53,6 +54,8 @@ function AddVisit() {
     const handleSave = () => {
         mutate(visit);
         setVisit({
+            serviceCost: 0,
+            serviceProvided: "",
             clientClientId: 0,
             clientFirst_name: "",
             clientLast_name: "",

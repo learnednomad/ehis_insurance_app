@@ -72,32 +72,37 @@ public class AuthenticationService {
         revokeAllUserTokens(user);
         saveUserToken(user,jtToken);
 
-        if (user.getClient() == null){
+        if (user.getRole() == Roles.ADMIN){
         return AuthenticationResponse
                 .builder()
+                .name(user.getName())
                 .access_token(jtToken)
                 .referesh_token(refreshToken)
                 .role(user.getRole())
                 .build();
-        }else if(user.getClient() != null){
+
+        }else if(user.getRole() == Roles.CLIENT){
             return AuthenticationResponse
                     .builder()
                     .id(user.getClient().getClientId())
+                    .name(user.getName())
                     .access_token(jtToken)
                     .role(user.getRole())
                     .referesh_token(refreshToken)
                     .build();
-        }else if(user.getHospital() != null){
+        }else if(user.getRole() == Roles.HOSPITAL){
             return AuthenticationResponse
                     .builder()
+                    .name(user.getName())
                     .id(user.getHospital().getHospitalID())
                     .access_token(jtToken)
                     .role(user.getRole())
                     .referesh_token(refreshToken)
                     .build();
-        }else if(user.getProvider() != null){
+        }else if(user.getRole() == Roles.PROVIDER){
             return AuthenticationResponse
                     .builder()
+                    .name(user.getName())
                     .id(user.getProvider().getProvider_id())
                     .access_token(jtToken)
                     .role(user.getRole())

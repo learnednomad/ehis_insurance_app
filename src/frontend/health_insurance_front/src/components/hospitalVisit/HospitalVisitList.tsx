@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
-import {getVisits, deleteVisit} from "../../api/visitapi.ts";
+import { deleteVisit, getHospitalVisits} from "../../api/visitapi.ts";
 import {DataGrid, GridCellParams, GridColDef, GridToolbar} from '@mui/x-data-grid';
 import Snackbar from '@mui/material/Snackbar';
 import AddHospitalVisit from "./AddHospitalVisit.tsx";
@@ -18,7 +18,7 @@ function HospitalVisitList() {
 
     const { data, error, isSuccess } = useQuery({
         queryKey: ["visits"],
-        queryFn: getVisits
+        queryFn: getHospitalVisits
     });
 
 
@@ -39,6 +39,9 @@ function HospitalVisitList() {
         {field: 'clientLast_name', headerName: 'Last Name', width: 200},
         {field: 'date', headerName: 'Date of Service', width: 250},
         {field: 'hospitalHospital_name', headerName: 'Location', width: 200},
+        {field: 'serviceProvided', headerName: 'Service Provided', width: 200},
+        {field: 'serviceCost', headerName: 'Service Fee', width: 200},
+
         {
             field: 'edit',
             headerName: '',

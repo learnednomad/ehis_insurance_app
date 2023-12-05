@@ -15,7 +15,8 @@ public record ClaimDto(
         double claimAmount,
         String claimStatus,
         long hospitalHospitalID,
-        String hospitalHospital_name)
+        String hospitalHospital_name,
+        String diagnosisCodes)
 {
 
 

@@ -13,6 +13,7 @@ function AddClaim() {
 
   const [open, setOpen] = useState(false);
   const [claim, setClaim] = useState<Claim>({
+    diagnosisCodes: "",
     claimAmount: 0,
     claimId: 0,
     claimStatus: "",
@@ -29,7 +30,8 @@ function AddClaim() {
 
   const { mutate } = useMutation(addClaim, {
     onSuccess: () => {
-      queryClient.invalidateQueries(["claims"]);
+      queryClient.invalidateQueries({ queryKey: ['clients'] })
+
     },
     onError: (err) => {
       console.error(err);
@@ -55,6 +57,7 @@ function AddClaim() {
   const handleSave = () => {
     mutate(claim);
     setClaim({
+      diagnosisCodes: "",
       claimAmount: 0,
       claimId: 0,
       claimStatus: "",

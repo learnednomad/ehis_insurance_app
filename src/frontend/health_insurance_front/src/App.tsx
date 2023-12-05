@@ -1,5 +1,5 @@
 import CssBaseline from '@mui/joy/CssBaseline';
-import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -62,6 +62,8 @@ function App() {
                                     <>
                                         <Route path="/hvisits" element={<HospitalVisitList />} />
                                         <Route path="/hdash" element={<HospitalDashboardView />} />
+                                        <Route path="/hclaims" element={<ClaimsList />} />
+
                                         {/* Add more HOSPITAL routes if needed */}
                                     </>
                                 )}

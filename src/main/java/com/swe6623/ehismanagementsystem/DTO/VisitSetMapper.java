@@ -17,7 +17,9 @@ public class VisitSetMapper implements Function<Visit,VisitDto> {
                 visit.getClient().getFirst_name(),
                 visit.getClient().getLast_name(),
                 visit.getHospital().getHospital_name(),
-                visit.getDate(),visit.getHospital().getHospitalID()
+                visit.getDate(),visit.getHospital().getHospitalID(),
+                visit.getServiceProvided(),
+                visit.getServiceCost()
         );
     }
 }

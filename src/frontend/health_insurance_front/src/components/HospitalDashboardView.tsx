@@ -7,12 +7,10 @@ import Typography from '@mui/joy/Typography';
 import Sheet from "@mui/joy/Sheet";
 import Box from "@mui/joy/Box";
 import { useNavigate } from 'react-router-dom';
-import useAuth from "./auth/useAuth.tsx";
 
 
  function HospitalDashboardView() {
 
-    const {isAuthenticated,authenticateUser, userRole} = useAuth();
     const navigate = useNavigate();
 
     return (

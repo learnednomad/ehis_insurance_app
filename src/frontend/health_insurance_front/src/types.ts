@@ -25,6 +25,7 @@ export type Claim = {
     claimStatus: string;
     hospitalHospitalID: number;
     hospitalHospital_name: string;
+    diagnosisCodes:string;
 }
 
 export type Provider = {
@@ -59,6 +60,8 @@ export type Visit = {
     hospitalHospital_name: string;
     date: string;
     hospitalHospitalID: number;
+    serviceProvided: string;
+    serviceCost: number;
 }
 
 
@@ -90,6 +93,7 @@ export type ClaimsResponse = {
     claimStatus: string;
     hospitalHospitalID: number;
     hospitalHospital_name: string;
+    diagnosisCodes:string;
 }
 
 export type ProviderResponse = {
@@ -124,6 +128,8 @@ export type VisitResponse = {
     hospitalHospital_name: string;
     date: string;
     hospitalHospitalID: number;
+    serviceProvided: string;
+    serviceCost: number;
 }
 
 

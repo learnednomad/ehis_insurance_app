@@ -26,7 +26,7 @@ export const addHospital = async (hospital: Hospital): Promise<HospitalResponse>
 }
 
 
-export const deleteHospital = async (hospitalID): Promise<HospitalResponse> => {
+export const deleteHospital = async (hospitalID:number): Promise<HospitalResponse> => {
     try {
         console.log("Deleting client with ID:", hospitalID);
         const response = await axios.delete(import.meta.env.VITE_API_URL + `hospitals/${hospitalID}`,getAxiosConfig());

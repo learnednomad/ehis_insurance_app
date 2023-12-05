@@ -16,14 +16,20 @@ function VisitDialogContent({ visit, handleChange }: DialogFormProps) {
     return (
         <DialogContent >
             <Stack my={2}>
-            <TextField size={"small"} label="Client ID" name="clientClientId"
-                   value={visit.clientClientId} onChange={handleChange}/><br/>
+                <TextField size={"small"} label="Client ID" name="clientClientId"
+                           value={visit.clientClientId} onChange={handleChange}/><br/>
 
-            <TextField size={"small"} label="Hospital ID" name="hospitalHospitalID"
-                   value={visit.hospitalHospitalID} onChange={handleChange}/><br/>
+                <TextField size={"small"} label="Hospital ID" name="hospitalHospitalID"
+                           value={visit.hospitalHospitalID} onChange={handleChange}/><br/>
 
-            <TextField size={"small"} label="Date of Service" name="date" type="datetime-local"
-                   value={visit.date} onChange={handleChange}/><br/>
+                <TextField size={"small"} label="Services Provided" name="serviceProvided"
+                           value={visit.serviceProvided} onChange={handleChange}/><br/>
+
+                <TextField size={"small"} label="Service Fee" name="serviceCost"
+                           value={visit.serviceCost} onChange={handleChange}/><br/>
+
+                <TextField size={"small"} label="Date of Service" name="date" type="datetime-local"
+                           value={visit.date} onChange={handleChange}/><br/>
 
             </Stack>
         </DialogContent>

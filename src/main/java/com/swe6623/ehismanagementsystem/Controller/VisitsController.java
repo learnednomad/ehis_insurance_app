@@ -36,8 +36,12 @@ public class VisitsController {
 
     @GetMapping("clients/{id}")
     public List<VisitDto> getClientVisits(@PathVariable Long id) {
-
         return visitsService.findAllVisitsByClient(id);
+    }
+
+    @GetMapping("hosp/{id}")
+    public List<VisitDto> getHospitalVisits(@PathVariable Long id) {
+        return visitsService.findAllVisitsByHospital(id);
     }
 
     @PostMapping("/add-visit")

@@ -9,8 +9,6 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-
-
     <groupId>com.SWE6623</groupId>
     <artifactId>EHISManagementSystem</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -169,6 +167,7 @@
                         </executions>
                     </plugin>
                     <plugin>
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
                         <artifactId>maven-resources-plugin</artifactId>
                         <executions>
                             <execution>
@@ -180,7 +179,7 @@
                                 <configuration>
                                     <resources>
                                         <resource>
-                                            <directory>src/frontend/health_insurance_front</directory>
+                                            <directory>src/frontend/health_insurance_front/dist</directory>
                                         </resource>
                                     </resources>
                                     <outputDirectory>${basedir}/target/classes/static</outputDirectory>

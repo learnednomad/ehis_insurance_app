@@ -18,10 +18,9 @@ type FormProps = {
 }
 
 function EditVisit({ visitdata }: FormProps) {
-
     const [open, setOpen] = useState(false);
-
     const [visit, setVisit] = useState<Visit>({
+        serviceCost: 0, serviceProvided: "",
         clientClientId: 0,
         clientFirst_name: "",
         clientLast_name: "",
@@ -47,6 +46,8 @@ function EditVisit({ visitdata }: FormProps) {
 
     const handleClickOpen = () => {
         setVisit({
+            serviceCost: visitdata.serviceCost,
+            serviceProvided: visitdata.serviceProvided,
             clientClientId: visitdata.clientClientId,
             clientFirst_name: visitdata.clientFirst_name,
             clientLast_name: visitdata.clientLast_name,
@@ -55,7 +56,6 @@ function EditVisit({ visitdata }: FormProps) {
             hospitalHospital_name: visitdata.hospitalHospital_name,
             visitID: visitdata.visitID
         });
-
         setOpen(true);
     };
 
@@ -69,6 +69,7 @@ function EditVisit({ visitdata }: FormProps) {
         mutate(visitEntry)
 
         setVisit({
+            serviceCost: 0, serviceProvided: "",
             clientClientId: 0,
             clientFirst_name: "",
             clientLast_name: "",

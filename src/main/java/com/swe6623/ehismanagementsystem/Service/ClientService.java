@@ -89,6 +89,7 @@ public class ClientService {
             client.setFirst_name(updatedClient.firstName());
             client.setLast_name(updatedClient.lastName());
             client.setDateOfBirth(updatedClient.dateOfBirth());
+            client.setPolicy(policyRepository.findByPolicyId(updatedClient.policyPolicyId()));
             return clientRepository.save(client);
         } else {
             throw new EntityNotFoundException("Client with ID " + clientId + " not found");

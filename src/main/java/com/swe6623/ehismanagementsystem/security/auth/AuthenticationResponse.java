@@ -27,4 +27,6 @@ public class AuthenticationResponse {
 
     private Roles role;
 
+    private String name;
+
 }

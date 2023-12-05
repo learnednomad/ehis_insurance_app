@@ -4,33 +4,42 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/joy/Stack";
 
 type DialogFormProps = {
-    claim: Claim;
+    claim: Claim,
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) =>
-        void;
+        void,
 }
-function ClaimDialogContent({ claim, handleChange }: DialogFormProps) {
+function StatusUpdate({ claim, handleChange }: DialogFormProps) {
+
+
     return (
         <DialogContent>
             <Stack my={2}>
 
             <TextField label="Client ID" name="clientClientId"
                    value={claim.clientClientId} onChange={handleChange}
-                     /><br/>
+                     disabled={true}/><br/>
 
                 <TextField label="Service Received"   name="diagnosisCodes"
-                           value={claim.diagnosisCodes} onChange={handleChange}/><br/>
+                           value={claim.diagnosisCodes} onChange={handleChange} disabled={true}/><br/>
 
             <TextField label="Claim Amount"   name="claimAmount"
-                   value={claim.claimAmount} onChange={handleChange} /><br/>
+                   value={claim.claimAmount} onChange={handleChange} disabled={true} /><br/>
 
             <TextField  name="dateOfService" type = "datetime-local"
                    value={claim.dateOfService} onChange={handleChange}
-                       /><br/>
+                      disabled={true} /><br/>
 
             <TextField label="Location Of Service" name="hospitalHospitalID"
-                   value={claim.hospitalHospitalID} onChange={handleChange} /><br/>
+                   value={claim.hospitalHospitalID} onChange={handleChange}  disabled={true}/><br/>
+
+
+                <TextField label="Status" name="claimStatus"
+                           value={claim.claimStatus} onChange={handleChange} /><br/>
+
+
+
             </Stack>
         </DialogContent>
     );
 }
-export default ClaimDialogContent;
+export default StatusUpdate;

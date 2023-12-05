@@ -13,10 +13,23 @@ const getAxiosConfig = (): AxiosRequestConfig => {
     };
 };
 
+
+// @ts-ignore
+const uid = JSON.parse(localStorage.getItem('user_id'))
+
+
+
 export const getClaims = async (): Promise<ClaimsResponse[]> => {
     const response = await axios.get("http://localhost:2600/api/v1/claims/", getAxiosConfig());
-return response.data;
+    return response.data;
 
+}
+
+
+
+export const getHospitalClaims = async (): Promise<ClaimsResponse[]> => {
+    const response = await axios.get(`http://localhost:2600/api/v1/claims/hospital/${uid}`, getAxiosConfig());
+    return response.data;
 }
 
 
@@ -29,7 +42,7 @@ export const addClaim = async (claim: Claim): Promise<ClaimsResponse> => {
 
 
 //Delete Claims
-export const deleteClaim = async (claimId): Promise<ClaimsResponse> => {
+export const deleteClaim = async (claimId:number): Promise<ClaimsResponse> => {
     try {
         const response = await axios.delete(import.meta.env.VITE_API_URL+`claims/${claimId}`,getAxiosConfig());
         // You might return some data from the response if needed

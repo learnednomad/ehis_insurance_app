@@ -38,7 +38,7 @@ export default function LandingMainEvervault() {
                 },
             })}
         >
-            <Stack useFlexGap spacing={2}>
+            <Stack useFlexGap spacing={2} >
                 <Chip
                     size="sm"
                     slotProps={{

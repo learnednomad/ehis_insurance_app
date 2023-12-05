@@ -19,8 +19,11 @@ function ClientList() {
 
     const { data, error, isSuccess } = useQuery({
         queryKey: ["clients"],
-        queryFn: getClients
+        queryFn: getClients,
+        refetchInterval:10
+
     });
+
 
     const { mutate } = useMutation(deleteClient, {
         onSuccess: () => {

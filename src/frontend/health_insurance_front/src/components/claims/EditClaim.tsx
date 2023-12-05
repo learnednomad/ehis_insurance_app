@@ -10,6 +10,8 @@ import IconButton from "@mui/joy/IconButton";
 import {Edit} from "@mui/icons-material";
 import {Tooltip} from "@mui/joy";
 import Button from "@mui/joy/Button";
+import useAuth from "../auth/useAuth.tsx";
+import StatusUpdate from "./StatusUpdate.tsx";
 
 
 type FormProps = {
@@ -17,9 +19,11 @@ type FormProps = {
 }
 function EditClaim({ claimdata }: FormProps) {
 
+    const {userRole} =useAuth()
     const [open, setOpen] = useState(false);
 
     const [claim, setClaim] = useState<Claim>({
+        diagnosisCodes: "",
         claimAmount: 0,
         claimId: 0,
         claimStatus: "",
@@ -45,6 +49,7 @@ function EditClaim({ claimdata }: FormProps) {
 
     const handleClickOpen = () => {
         setClaim({
+            diagnosisCodes: claimdata.diagnosisCodes,
             claimAmount: claimdata.claimAmount,
             claimId: claimdata.claimId,
             claimStatus: claimdata.claimStatus,
@@ -58,16 +63,20 @@ function EditClaim({ claimdata }: FormProps) {
         setOpen(true);
     };
 
+
+
+
     const handleClose = () => {
         setOpen(false);
     };
 
     const handleSave = () => {
-        const url = "http://localhost:2600/api/v1/claims/"+claimdata.claimId;
+        const url = "http://localhost:2600/api/v1/claims/"+ claimdata.claimId;
         const claimEntry: ClaimEntry = {claim, url}
         mutate(claimEntry);
 
       setClaim({
+          diagnosisCodes: "",
           claimAmount: 0,
           claimId: 0,
           claimStatus: "",
@@ -81,10 +90,22 @@ function EditClaim({ claimdata }: FormProps) {
         setOpen(false);
     }
 
+    const handleReject = () => {
+        handleSave();
+    }
+
+
+    const handleApprove = () => {
+        handleSave();
+    }
+
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) =>
     {
         setClaim({...claim, [event.target.name]: event.target.value});
     }
+
+
+
 
     return(
         <>
@@ -96,11 +117,17 @@ function EditClaim({ claimdata }: FormProps) {
             </Tooltip>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit Claim</DialogTitle>
-                <ClaimDialogContent claim={claim} handleChange={handleChange}/>
-                <DialogActions>
+                {(userRole==='HOSPITAL') &&  <ClaimDialogContent claim={claim} handleChange={handleChange}/> }
+                {(userRole==='HOSPITAL') &&  <DialogActions>
                     <Button  variant="plain" color={"danger"}  onClick={handleClose}>Cancel</Button>
                     <Button  variant="soft" color={"success"} onClick={handleSave}>Save</Button>
-                </DialogActions>
+                </DialogActions> }
+
+                {(userRole==='ADMIN') &&  <StatusUpdate claim={claim} handleChange={handleChange} /> }
+                {(userRole==='ADMIN') &&  <DialogActions>
+                    <Button  variant="plain" color={"danger"}  onClick={handleReject}>Cancel</Button>
+                    <Button  variant="soft" color={"success"} onClick={handleApprove}>Submit</Button>
+                </DialogActions> }
             </Dialog>
 
         </>

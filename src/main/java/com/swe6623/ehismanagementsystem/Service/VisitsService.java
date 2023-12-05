@@ -16,6 +16,9 @@ public interface VisitsService {
 
     List<VisitDto> findAllVisitsByClient(Long id);
 
+    List<VisitDto> findAllVisitsByHospital(Long id);
+
+
 //    List<VisitDto> findAllVisitsByClient(String username);
 
     void deleteVisit(Long id);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.swe6623.ehismanagementsystem.ExceptionHandling.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,13 +50,44 @@ public class ClaimsService {
         return claimsRepository.findAllByHospital_HospitalID(hospitalID).stream().map(claimDtoMapper).collect(Collectors.toList());
     }
 
-    public Claim createClaim(Claim claim) {
-        return claimsRepository.save(claim);
+    public Claim createClaim(ClaimDto claim) {
+        // Fetch client and hospital entities by ID
+        Client client = clientRepository.findById(claim.clientClientId())
+                .orElseThrow(() -> new IllegalArgumentException("Client with id " + claim.clientClientId() + " not found"));
+
+
+        Hospital hospital = hospitalRepository.findById(claim.hospitalHospitalID())
+                .orElseThrow(() -> new IllegalArgumentException("Hospital with id " + claim.hospitalHospitalID() + " not found"));
+
+
+        Claim newC = new Claim().builder()
+              .claimAmount(claim.claimAmount())
+              .claimStatus(claim.claimStatus())
+              .dateOfService(claim.dateOfService())
+                .client(client)
+                .hospital(hospital)
+                .diagnosisCodes(claim.diagnosisCodes()).build();
+
+        return claimsRepository.save(newC);
     }
 
-    public Claim updateClaim(long claimId, Claim claim) {
-        claim.setClaimId(claimId);
-        return claimsRepository.save(claim);
+
+    public Claim updateClaim(long claimId, ClaimDto claimDto) {
+
+        Optional<Claim> claimOptional = claimsRepository.findById(claimId);
+        if (claimOptional.isPresent()){
+            Claim claim = claimOptional.get();
+            claim.setClaimStatus(claimDto.claimStatus());
+            claim.setClaimAmount(claimDto.claimAmount());
+            claim.setDateOfService(claimDto.dateOfService());
+            claim.setDiagnosisCodes(claimDto.diagnosisCodes());
+            return claimsRepository.save(claim);
+        }else {
+            throw new EntityNotFoundException("Client with ID " + claimId + " not found");
+
+        }
+
+
     }
 
 

@@ -10,12 +10,14 @@ import {Add} from "@mui/icons-material";
 import Button from "@mui/joy/Button";
 
 function AddHospitalVisit() {
+    // @ts-ignore
     const i = JSON.parse(localStorage.getItem('user_id'));
+
     const [open, setOpen] = useState(false);
     const [visit, setVisit] = useState<Visit>({
         clientClientId: 0,
         clientFirst_name: "",
-        clientLast_name: "",
+        clientLast_name: "", serviceCost: 0, serviceProvided: "",
         date: "",
         hospitalHospitalID: i,
         hospitalHospital_name: "",
@@ -41,7 +43,16 @@ function AddHospitalVisit() {
 
 // Close the modal form
     const handleClose = () => {
-        setOpen(false);
+        setVisit({
+            serviceCost: 0, serviceProvided: "",
+            clientClientId: 0,
+            clientFirst_name: "",
+            clientLast_name: "",
+            date: "",
+            hospitalHospitalID: i,
+            hospitalHospital_name: "",
+            visitID: 0
+        });        setOpen(false);
     };
 
 
@@ -54,6 +65,7 @@ function AddHospitalVisit() {
     const handleSave = () => {
         mutate(visit);
         setVisit({
+            serviceCost: 0, serviceProvided: "",
             clientClientId: 0,
             clientFirst_name: "",
             clientLast_name: "",

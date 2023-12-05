@@ -19,14 +19,19 @@ type FormProps = {
 
 function EditHospitalVisit({ visitdata }: FormProps) {
 
+    // @ts-ignore
+    const i = JSON.parse(localStorage.getItem('user_id'));
+
+
     const [open, setOpen] = useState(false);
 
     const [visit, setVisit] = useState<Visit>({
+        serviceCost: 0, serviceProvided: "",
         clientClientId: 0,
         clientFirst_name: "",
         clientLast_name: "",
         date: "",
-        hospitalHospitalID: 0,
+        hospitalHospitalID: i,
         hospitalHospital_name: "",
         visitID: 0
     });
@@ -47,6 +52,7 @@ function EditHospitalVisit({ visitdata }: FormProps) {
 
     const handleClickOpen = () => {
         setVisit({
+            serviceCost: 0, serviceProvided: "",
             clientClientId: visitdata.clientClientId,
             clientFirst_name: visitdata.clientFirst_name,
             clientLast_name: visitdata.clientLast_name,
@@ -69,11 +75,12 @@ function EditHospitalVisit({ visitdata }: FormProps) {
         mutate(visitEntry)
 
         setVisit({
+            serviceCost: 0, serviceProvided: "",
             clientClientId: 0,
             clientFirst_name: "",
             clientLast_name: "",
             date: "",
-            hospitalHospitalID: 0,
+            hospitalHospitalID: i,
             hospitalHospital_name: "",
             visitID: 0
         })
